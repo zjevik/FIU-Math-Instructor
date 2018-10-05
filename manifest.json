@@ -1,6 +1,6 @@
 {
     "name": "FIU Math Instructor",
-    "version": "0.04",
+    "version": "0.05",
     "author": "Ondrej Zjevik",
     "description": "Grading helper for FIU's math classes.",
     "permissions": [

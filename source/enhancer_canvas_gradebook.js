@@ -165,6 +165,9 @@ function gradebookLoaded() {
     for (var i in course.gradebook_save_ids) {
         checkboxList[i].checked = true;
     }
+    
+    //Expand the grid with grades to display bottom row
+    $("#gradebook_grid").height($("#gradebook_grid").height()+25);
 
     update();
     $(".canvas_1.grid-canvas").bind('DOMSubtreeModified', DOMModificationHandler);
