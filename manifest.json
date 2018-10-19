@@ -1,6 +1,6 @@
 {
     "name": "FIU Math Instructor",
-    "version": "0.05",
+    "version": "0.07",
     "author": "Ondrej Zjevik",
     "description": "Grading helper for FIU's math classes.",
     "permissions": [
@@ -18,6 +18,19 @@
     "content_scripts": [
         {
             "matches": [
+                "http://openvellum.ecollege.com/*"
+      ],
+            "all_frames": false,
+            "js": [
+                "source/jquery-3.2.1.min.js",
+                "source/lz-string.min.js",
+                "source/chrome-Storage-largeSync.min.js",
+                "source/enhancer_MLP_helper.js"
+      ],
+            "css": [],
+            "run_at": "document_idle"
+    }, {
+            "matches": [
                 "https://www.mathxl.com/Instructor/Gradebook.aspx*"
       ],
             "all_frames": true,
@@ -25,11 +38,12 @@
                 "source/jquery-3.2.1.min.js",
                 "source/lz-string.min.js",
                 "source/chrome-Storage-largeSync.min.js",
+                "source/toastr.min.js",
                 "source/enhancer_MLP_gradebook.js"
       ],
-            "css": [],
+            "css": ["source/css/style.css","source/css/toastr.min.css"],
             "run_at": "document_idle"
-    },{
+    }, {
             "matches": [
                 "https://mycs.fiu.edu/psc/stdnt/*"
       ],
@@ -62,9 +76,10 @@
                 "source/jquery-3.2.1.min.js",
                 "source/lz-string.min.js",
                 "source/chrome-Storage-largeSync.min.js",
+                "source/toastr.min.js",
                 "source/enhancer_canvas_gradebook.js"
       ],
-            "css": ["source/css/gradebook.css"],
+            "css": ["source/css/gradebook.css","source/css/toastr.min.css"],
             "run_at": "document_idle"
     }, {
             "matches": [
