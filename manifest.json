@@ -1,116 +1,118 @@
 {
-    "name": "FIU Math Instructor",
-    "version": "0.07",
-    "author": "Ondrej Zjevik",
-    "description": "Grading helper for FIU's math classes.",
-    "permissions": [
-        "storage",
-        "https://myportal.fiu.edu/*",
-        "https://fiu.instructure.com/courses/*",
-        "http://openvellum.ecollege.com/*",
-        "https://mycs.fiu.edu/*",
-        "https://www.mathxl.com/Instructor/Gradebook.aspx*",
-        "clipboardRead"
+  "name": "FIU Math Instructor",
+  "version": "0.10",
+  "author": "Ondrej Zjevik",
+  "description": "Grading helper for FIU's math classes.",
+  "permissions": [
+    "storage",
+    "https://myportal.fiu.edu/*",
+    "https://fiu.instructure.com/courses/*",
+    "http://openvellum.ecollege.com/*",
+    "https://mycs.fiu.edu/*",
+    "https://www.mathxl.com/Instructor/Gradebook.aspx*",
+    "clipboardRead"
   ],
-    "background": {
-        "scripts": ["source/background.js"]
-    },
-    "content_scripts": [
-        {
-            "matches": [
-                "http://openvellum.ecollege.com/*"
+  "browser_action": {
+    "default_popup": "source/popup.html"
+  },
+  "background": {
+    "scripts": ["source/background.js"]
+  },
+  "content_scripts": [{
+      "matches": [
+        "http://openvellum.ecollege.com/*"
       ],
-            "all_frames": false,
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/enhancer_MLP_helper.js"
+      "all_frames": false,
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/enhancer_MLP_helper.js"
       ],
-            "css": [],
-            "run_at": "document_idle"
+      "css": [],
+      "run_at": "document_idle"
     }, {
-            "matches": [
-                "https://www.mathxl.com/Instructor/Gradebook.aspx*"
+      "matches": [
+        "https://www.mathxl.com/Instructor/Gradebook.aspx*"
       ],
-            "all_frames": true,
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/toastr.min.js",
-                "source/enhancer_MLP_gradebook.js"
+      "all_frames": true,
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/toastr.min.js",
+        "source/enhancer_MLP_gradebook.js"
       ],
-            "css": ["source/css/style.css","source/css/toastr.min.css"],
-            "run_at": "document_idle"
+      "css": ["source/css/style.css", "source/css/toastr.min.css"],
+      "run_at": "document_idle"
     }, {
-            "matches": [
-                "https://mycs.fiu.edu/psc/stdnt/*"
+      "matches": [
+        "https://mycs.fiu.edu/psc/stdnt/*"
       ],
-            "all_frames": true,
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/enhancer_panthersoft.js"
+      "all_frames": true,
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/enhancer_panthersoft.js"
       ],
-            "css": [],
-            "run_at": "document_idle"
+      "css": [],
+      "run_at": "document_idle"
     }, {
-            "matches": [
-                "https://www.mathxl.com/Instructor/EditStudentIDs.aspx*"
+      "matches": [
+        "https://www.mathxl.com/Instructor/EditStudentIDs.aspx*"
       ],
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/enhancer_MLP_studentID.js"
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/enhancer_MLP_studentID.js"
       ],
-            "css": [],
-            "run_at": "document_idle"
+      "css": [],
+      "run_at": "document_idle"
     }, {
-            "matches": [
-                "https://fiu.instructure.com/courses/*/gradebook"
+      "matches": [
+        "https://fiu.instructure.com/courses/*/gradebook"
       ],
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/toastr.min.js",
-                "source/enhancer_canvas_gradebook.js"
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/toastr.min.js",
+        "source/enhancer_canvas_gradebook.js"
       ],
-            "css": ["source/css/gradebook.css","source/css/toastr.min.css"],
-            "run_at": "document_idle"
+      "css": ["source/css/gradebook.css", "source/css/toastr.min.css"],
+      "run_at": "document_idle"
     }, {
-            "matches": [
-                "https://fiu.instructure.com/courses/*/users"
+      "matches": [
+        "https://fiu.instructure.com/courses/*/users"
       ],
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/enhancer_canvas_users.js"
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/enhancer_canvas_users.js"
       ],
-            "css": [],
-            "run_at": "document_idle"
+      "css": [],
+      "run_at": "document_idle"
     }, {
-            "matches": [
-                "https://www.mathxl.com/Instructor/AddOfflineItem.aspx?*"
+      "matches": [
+        "https://www.mathxl.com/Instructor/AddOfflineItem.aspx?*"
       ],
-            "all_frames": true,
-            "js": [
-                "source/jquery-3.2.1.min.js",
-                "source/lz-string.min.js",
-                "source/chrome-Storage-largeSync.min.js",
-                "source/enhancer_MLP_assignment.js"
+      "all_frames": true,
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/lz-string.min.js",
+        "source/chrome-Storage-largeSync.min.js",
+        "source/enhancer_MLP_assignment.js"
       ],
-            "css": [],
-            "run_at": "document_idle"
+      "css": [],
+      "run_at": "document_idle"
     }
 
   ],
-    "manifest_version": 2,
-    "web_accessible_resources": [
-      "source/images/*"
-    ]
+  "manifest_version": 2,
+  "web_accessible_resources": [
+    "source/images/*"
+  ]
 }

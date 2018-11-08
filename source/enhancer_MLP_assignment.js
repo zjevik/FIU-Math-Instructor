@@ -75,9 +75,9 @@ function fillData() {
 
     //enter values to MLP
     $("#TableStudents tr").slice(1).each(function() {
-      if (courses[courses_actIndex].id_pid_to_canvasid.hasOwnProperty(this.children[1].innerText)) {
+      if (courses[courses_actIndex].id_pid_to_canvasid.hasOwnProperty(this.children[1].innerText.trim())) {
         try {
-          result = data[courses[courses_actIndex].id_pid_to_canvasid[this.children[1].innerText]][$("#selectedAssignment").val()];
+          result = data[courses[courses_actIndex].id_pid_to_canvasid[this.children[1].innerText.trim()]][$("#selectedAssignment").val()];
 
           $(this).find("td span input").first().val(result)
           $(this).find('td span').next().val(result)
@@ -124,9 +124,9 @@ function fillData() {
 function fillDataFromClpb() {
   //enter values to MLP
   $("#TableStudents tr").slice(1).each(function() {
-    if (clpbData.hasOwnProperty(this.children[1].innerText)) {
+    if (clpbData.hasOwnProperty(this.children[1].innerText.trim())) {
       try {
-        result = clpbData[this.children[1].innerText];
+        result = clpbData[this.children[1].innerText.trim()];
 
         $(this).find("td span input").first().val(result)
         $(this).find('td span').next().val(result)
@@ -160,13 +160,13 @@ function refreshPrediction() {
         var count = 0;
         var pid_count = 0;
         $("#TableStudents tr").slice(1).each(function() {
-          if (this.children[1].innerText != "") {
+          if (this.children[1].innerText.trim() != "") {
             //count displayed student ids
             pid_count++;
           }
-          if (courses[courses_actIndex].id_pid_to_canvasid.hasOwnProperty(this.children[1].innerText)) {
+          if (courses[courses_actIndex].id_pid_to_canvasid.hasOwnProperty(this.children[1].innerText.trim())) {
             //count if the row can be filled
-            if (data[courses[courses_actIndex].id_pid_to_canvasid[this.children[1].innerText]] != undefined && data[courses[courses_actIndex].id_pid_to_canvasid[this.children[1].innerText]].hasOwnProperty($("#selectedAssignment").val()))
+            if (data[courses[courses_actIndex].id_pid_to_canvasid[this.children[1].innerText.trim()]] != undefined && data[courses[courses_actIndex].id_pid_to_canvasid[this.children[1].innerText.trim()]].hasOwnProperty($("#selectedAssignment").val()))
               count++;
           }
         });
@@ -204,7 +204,7 @@ function refreshPrediction() {
       // find how many students we can complete
       var count = 0;
       $("#TableStudents tr").slice(1).each(function() {
-        if (clpbData.hasOwnProperty(this.children[1].innerText)) {
+        if (clpbData.hasOwnProperty(this.children[1].innerText.trim())) {
           //count if the row can be filled
           count++
         }
