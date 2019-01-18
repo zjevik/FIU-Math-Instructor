@@ -93,13 +93,7 @@ function readData() {
 
     console.log(course);
 
-    //check if the last row is an instructor
-    if ($("div[data-view='users'] .rosterUser").last()[0].children[4].innerText.trim() != "Teacher") {
-        notification.textContent = 'It looks like not all users are displayed. Please scroll down.';
-    } else {
-        notification.textContent = 'Everything looks good!';
-        div.style.backgroundColor = "lightgreen";
-    }
+    notification.textContent = 'Data stored for '+Object.keys(course.id_pid_to_canvasid).length+' users';
 
     storeData();
 }
