@@ -58,7 +58,7 @@ function swapDict(json) {
 }
 
 function waitForGradebookToLoad() {
-  if ($(".gradebook_filter")[0].style.display == "none") {
+  if ($("#search-filter-container").children().prop("disabled") == true) {
     setTimeout(function() {
       waitForGradebookToLoad()
     }, 250);
@@ -107,9 +107,9 @@ function DOMModificationHandlerMidGrade() {
   setTimeout(function() {
     //Check whether data are saved
     if (bgData.hasOwnProperty("mlp") && course.hasOwnProperty("mlp_course_id") && bgData["mlp"].hasOwnProperty(course["mlp_course_id"])) {
-      $("a[data-user-id][data-assignment-id='" + assignmentID + "']").each(function(el) {
+      $("a[data-student_id][data-assignment-id='" + assignmentID + "']").each(function(el) {
         //console.log(this);
-        canvas_ID = $(this).attr("data-user-id");
+        canvas_ID = $(this).attr("data-student_id");
         if (!midtermIDupdated.includes(canvas_ID)) {
           midtermIDupdated.push(canvas_ID);
 
@@ -121,7 +121,7 @@ function DOMModificationHandlerMidGrade() {
           if (score != undefined) {
             addMidtermList.push([canvas_ID, assignmentID, score]);
             //$(this).parent().click();
-            //$("[data-user-id=10775]").last().parent().find("input").val("81.16%")
+            //$("[data-student_id=10775]").last().parent().find("input").val("81.16%")
             //console.log($(this).parent().find("input"));
           }
           if (score == undefined) {
@@ -145,15 +145,15 @@ addMidtermScores();
 function addMidtermScores() {
   if (addMidtermList.length > 0) {
     item = addMidtermList.shift();
-    el = $("a[data-user-id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
+    el = $("a[data-student_id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
     el.parent().click();
     setTimeout(function() {
-      el = $("a[data-user-id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
+      el = $("a[data-student_id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
       el.parent().find("input").val(item[2])
       document.body.click()
     }, 250);
     setTimeout(function() {
-      el = $("a[data-user-id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
+      el = $("a[data-student_id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
       el.closest(".gradebook-cell").addClass("result_saved");
     }, 350);
   }
@@ -178,7 +178,7 @@ function update() {
 
   $(".canvas_1.grid-canvas").children().each(function() {
     //console.log(this);
-    canvasid = $(this).find("[data-user-id]").attr("data-user-id");
+    canvasid = this.classList[this.classList.length-1].substr(8);
     for (var id in course.gradebook_save_ids) {
       //offset between gradebook_save_ids and slick cell
       try {
@@ -200,7 +200,7 @@ function update() {
           }, function(data) {
             //console.log(data);
             tmp = parseInt(data.gradebook_save_id) + 2;
-            $("[data-user-id='" + data.canvasid + "']").closest(".slick-row").find(".b" + tmp + " .gradebook-cell").addClass("result_saved");
+            $(".student_" + data.canvasid).closest(".slick-row").find(".b" + tmp + " .gradebook-cell").addClass("result_saved");
           });
         }
       } catch (e) {
@@ -267,6 +267,7 @@ function gradebookLoaded() {
 
   //Add copy mid-semester grades fom MLP button
   $(".slick-header-column[title='Mid-Semester Grade']").not("[id*='group']").children().not("[class]").remove();
+  /*
   $(".slick-header-column[title='Mid-Semester Grade']").not("[id*='group']").each(function() {
     var midgrade = document.createElement("div");
     btn = document.createElement("button");
@@ -296,6 +297,7 @@ function gradebookLoaded() {
     midgrade.appendChild(btn);
     this.append(midgrade);
   })
+  */
 }
 
 function fillMLPData(elem) {

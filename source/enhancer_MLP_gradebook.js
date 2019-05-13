@@ -73,7 +73,7 @@ function rosterLoaded() {
       });
     });
 
-    toastr.success("Saved "+scoresSaved+" scored.")
+    toastr.success("Saved "+scoresSaved+" scores.")
   });
 }
 
