@@ -1,6 +1,6 @@
 {
   "name": "FIU Math Instructor",
-  "version": "0.14",
+  "version": "0.15",
   "author": "Ondrej Zjevik",
   "description": "Grading helper for FIU's math classes.",
   "permissions": [
@@ -47,7 +47,7 @@
       "run_at": "document_idle"
     }, {
       "matches": [
-        "https://mycs.fiu.edu/psc/stdnt_3/*"
+        "https://mycs.fiu.edu/psc/stdnt_2/*"
       ],
       "all_frames": true,
       "js": [

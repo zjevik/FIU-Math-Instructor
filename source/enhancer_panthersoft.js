@@ -9,7 +9,7 @@ function waitForLoad(id) {
     } else {
         setTimeout(function () {
             console.log('Roster loaded. Saving...');
-            document.getElementById("win3divPSTOOLSHIDDENS").insertBefore(div, document.getElementById("pt_modalMask"));
+            document.getElementById("win2divPSTOOLSHIDDENS").insertBefore(div, document.getElementById("pt_modalMask"));
 
             readStudents();
         }, 750);
