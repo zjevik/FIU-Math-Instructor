@@ -1,3 +1,5 @@
+var number = "";
+
 function waitForLoad(id) {
     if (document.getElementById("DERIVED_SSR_FC_SSR_CLASSNAME_LONG") == null) {
         if (id < 15) {
@@ -9,7 +11,13 @@ function waitForLoad(id) {
     } else {
         setTimeout(function () {
             console.log('Roster loaded. Saving...');
-            document.getElementById("win2divPSTOOLSHIDDENS").insertBefore(div, document.getElementById("pt_modalMask"));
+            if(document.getElementById("win2divPSTOOLSHIDDENS") != null){
+                number = "2";
+            } else{
+                number = "1";
+            }
+            document.getElementById("win"+number+"divPSTOOLSHIDDENS").insertBefore(div, document.getElementById("pt_modalMask"));
+            
 
             readStudents();
         }, 750);
@@ -23,7 +31,7 @@ function readStudents() {
         className = document.getElementById("DERIVED_SSR_FC_SSR_CLASSNAME_LONG").innerHTML;
 
         //get student's data
-        document.querySelectorAll('#win2divPAGECONTAINER tr [valign="center"]').forEach(function (row) {
+        document.querySelectorAll('#win'+number+'divPAGECONTAINER tr [valign="center"]').forEach(function (row) {
             if (row.childElementCount > 4 && row.children[6].innerText.trim() != "Admin") {
                 student = {};
                 student.id = row.children[3].innerText.trim();
