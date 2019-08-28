@@ -11,10 +11,12 @@ function waitForLoad(id) {
     } else {
         setTimeout(function () {
             console.log('Roster loaded. Saving...');
-            if(document.getElementById("win2divPSTOOLSHIDDENS") != null){
-                number = "2";
-            } else{
+            if(document.getElementById("win1divPSTOOLSHIDDENS") != null){
                 number = "1";
+            } else if (document.getElementById("win2divPSTOOLSHIDDENS") != null){
+                number = "2";
+            } else if (document.getElementById("win3divPSTOOLSHIDDENS") != null){
+                number = "3";
             }
             document.getElementById("win"+number+"divPSTOOLSHIDDENS").insertBefore(div, document.getElementById("pt_modalMask"));
             
