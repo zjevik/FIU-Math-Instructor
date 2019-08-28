@@ -1,6 +1,6 @@
 {
   "name": "FIU Math Instructor",
-  "version": "0.17",
+  "version": "0.18",
   "author": "Ondrej Zjevik",
   "description": "Grading helper for FIU's math classes.",
   "permissions": [
@@ -11,9 +11,12 @@
     "https://mycs.fiu.edu/*",
     "https://www.mathxl.com/Instructor/Gradebook.aspx*",
     "clipboardRead"
-  ],
+  ],"icons": {
+        "128":"source/css/icon.png"
+    },
   "browser_action": {
-    "default_popup": "source/popup.html"
+    "default_popup": "source/popup.html",
+    "default_icon": "source/css/icon.png"
   },
   "background": {
     "scripts": ["source/background.js"]
