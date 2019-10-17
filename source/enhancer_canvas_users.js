@@ -72,12 +72,19 @@ function storeData() {
 
 //read data from page
 function readData() {
+    var colWitPID = null;
+    for(var i in $("div[data-view='users'] thead th")){
+        if($("div[data-view='users'] thead th")[i].innerText == "SIS ID"){
+            colWitPID = i;
+            break;
+        }
+    }
     for (var i in $("div[data-view='users'] .rosterUser")) {
         row = $("div[data-view='users'] .rosterUser")[i];
 
         try {
 
-            pid = row.children[2].innerText.trim();
+            pid = row.children[colWitPID].innerText.trim();
             canvasid = row.getAttribute("id").substring(row.getAttribute("id").indexOf('_') + 1);
             if (canvasid == "undefined") {
                 console.log(row);

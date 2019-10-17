@@ -107,6 +107,32 @@ function DOMModificationHandlerMidGrade() {
   setTimeout(function() {
     //Check whether data are saved
     if (bgData.hasOwnProperty("mlp") && course.hasOwnProperty("mlp_course_id") && bgData["mlp"].hasOwnProperty(course["mlp_course_id"])) {
+      $(".assignment_" + assignmentID).each(function(el) {
+          //get canvasID
+          var row = $(this).closest(".slick-row").attr("class");
+          if(row && row.length>0 && row.split(" ").filter(s => s.includes('student')).length>0){
+              var canvas_ID = row.split(" ").filter(s => s.includes('student'))[0].substring(8);
+              if (!midtermIDupdated.includes(canvas_ID)) {
+                  midtermIDupdated.push(canvas_ID);
+
+                  mlp_id = getMLPIDfromCanvasID(canvas_ID);
+
+                  score = bgData["mlp"][course["mlp_course_id"]][mlp_id];
+
+                  // Input the score
+                  if (score != undefined) {
+                    addMidtermList.push([canvas_ID, assignmentID, score]);
+                    //$(this).parent().click();
+                    //$("[data-student_id=10775]").last().parent().find("input").val("81.16%")
+                    //console.log($(this).parent().find("input"));
+                  }
+                  if (score == undefined) {
+                    toastr.error("MLP score not found. Please go to MLP gradebook and refresh this page.")
+                  }
+              }
+          }
+      });
+        /* Old code:
       $("a[data-student_id][data-assignment-id='" + assignmentID + "']").each(function(el) {
         //console.log(this);
         canvas_ID = $(this).attr("data-student_id");
@@ -131,6 +157,7 @@ function DOMModificationHandlerMidGrade() {
 
         //console.log(score);
       })
+      */
     } else if (!course.hasOwnProperty("mlp_course_id")) {
       toastr.error("Need additional information from MLP. Please go to MLP and copy assignment grades from Canvas to MLP and refresh this page.")
     } else {
@@ -144,6 +171,18 @@ addMidtermScores();
 
 function addMidtermScores() {
   if (addMidtermList.length > 0) {
+      item = addMidtermList.shift();
+      el = $(".canvas_1 .student_" + item[0] + " .assignment_"+item[1]);
+      el.click();
+      setTimeout(function() {
+          el.parent().find("input").val(item[2])
+          document.body.click()
+      }, 250);
+      setTimeout(function() {
+          el.closest(".gradebook-cell").addClass("result_saved");
+      }, 350);
+    
+      /*
     item = addMidtermList.shift();
     el = $("a[data-student_id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
     el.parent().click();
@@ -156,6 +195,7 @@ function addMidtermScores() {
       el = $("a[data-student_id=" + item[0] + "][data-assignment-id='" + item[1] + "']");
       el.closest(".gradebook-cell").addClass("result_saved");
     }, 350);
+    */
   }
   setTimeout(function() {
     addMidtermScores()

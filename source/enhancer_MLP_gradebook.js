@@ -24,6 +24,7 @@ function DOMModificationHandler() {
     $("#class-roster-container").bind('DOMSubtreeModified', DOMModificationHandler);
   }, 15);
 */
+    /*
   var div = document.createElement('div');
   div.style.width = "25%";
   div.style.float = "left";
@@ -39,6 +40,7 @@ function DOMModificationHandler() {
   div.appendChild(btn);
   $(div).insertBefore(".col-xs-9.text-right");
   $(".col-xs-9.text-right").css({'width': '50%'});
+  */
 }
 
 //Contact parent window for MLP course ID
