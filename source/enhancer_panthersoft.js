@@ -17,6 +17,14 @@ function waitForLoad(id) {
                 number = "2";
             } else if (document.getElementById("win3divPSTOOLSHIDDENS") != null){
                 number = "3";
+            } else if (document.getElementById("win4divPSTOOLSHIDDENS") != null){
+                number = "4";
+            } else if (document.getElementById("win5divPSTOOLSHIDDENS") != null){
+                number = "5";
+            } else if (document.getElementById("win6divPSTOOLSHIDDENS") != null){
+                number = "6";
+            } else if (document.getElementById("win7divPSTOOLSHIDDENS") != null){
+                number = "7";
             }
             document.getElementById("win"+number+"divPSTOOLSHIDDENS").insertBefore(div, document.getElementById("pt_modalMask"));
             
