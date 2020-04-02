@@ -53,10 +53,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       sendResponse(data.canvas[message.canvas_id]);
       break;
     case "MLP_assignment_clipboard":
-      newClipboardContents = getClipboard();
-
-      if (newClipboardContents != clipboardContents) {
-        clipboardContents = newClipboardContents;
+        clipboardContents = getClipboard();
         // proccess the clipboard and return student list
         rows = clipboardContents.split("\n");
         clipData = {};
@@ -65,7 +62,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
           clipData[els[0]] = els[els.length - 1];
         });
         sendResponse(clipData);
-      }
+      
       break;
     case "transfer":
       chrome.tabs.sendMessage(sender.tab.id, "placeholder", function(response) {
