@@ -1,6 +1,6 @@
 {
   "name": "FIU Math Instructor",
-  "version": "0.21",
+  "version": "0.22",
   "author": "Ondrej Zjevik",
   "description": "Grading helper for FIU's math classes.",
   "permissions": [
@@ -10,6 +10,8 @@
     "http://openvellum.ecollege.com/*",
     "https://mycs.fiu.edu/*",
     "https://www.mathxl.com/Instructor/Gradebook.aspx*",
+    "https://imathas.rationalreasoning.net/*",
+    "https://imathas.fiu.edu/*",
     "clipboardRead"
   ],"icons": {
         "128":"source/css/icon.png"
@@ -114,6 +116,18 @@
         "source/lz-string.min.js",
         "source/chrome-Storage-largeSync.min.js",
         "source/enhancer_MLP_assignment.js"
+      ],
+      "css": [],
+      "run_at": "document_idle"
+    }, {
+      "matches": [
+        "https://imathas.rationalreasoning.net/course/addgrades.php?*",
+        "https://imathas.fiu.edu/course/addgrades.php?*"
+      ],
+      "all_frames": true,
+      "js": [
+        "source/jquery-3.2.1.min.js",
+        "source/enhancer_imathas_copyfromexcel.js"
       ],
       "css": [],
       "run_at": "document_idle"
